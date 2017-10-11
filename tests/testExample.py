@@ -1,4 +1,5 @@
 from pages.HomePage import HomePage
+from pages.HomePage import ProductListing
 from tests.BaseTest import BaseTest
 
 
@@ -12,3 +13,4 @@ class testExample(BaseTest):
                         .get_page_title())
 
         self.assertIn(query, test)
+
