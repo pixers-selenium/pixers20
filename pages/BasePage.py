@@ -23,8 +23,16 @@ class BasePage:
         return self.driver.find_element(*locator)
 
     def click_on(self, locator):
+        '''
+        Funkcja click_on znajduje element na stronie wykorzustujac
+        funkcje find_element z tej klasy i klika na znaleziony element.
+        :param locator: zmienna okreslajaca locator na stronie
+        :return: teraz nic nie zwraca, a czy powinno cos zwracac zeby pozniej w ifie moznabylo to sprawdzic?
+        co zwraca element.click() gdybam ze true or false
+        '''
         element = self.find_element(locator)
         element.click()
+#
 
     def insert_text(self, locator, text):
         element = self.driver.find_element(*locator)
