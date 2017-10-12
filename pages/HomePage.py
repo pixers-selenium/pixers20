@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.BasePage import BasePage
+from pages.ProductListing import ProductListing
 
 
 class HomePage(BasePage):
@@ -12,4 +13,4 @@ class HomePage(BasePage):
     def search_query(self, text):
         self.insert_text(self.SEARCH_BOX, text)
         self.click_on(self.SEARCH_BUTTON)
-        return self  # powinno zwracac nowy obiekt klasy ProductListing(self.driver), ale na razie jej nie ma
+        return ProductListing(self.driver)

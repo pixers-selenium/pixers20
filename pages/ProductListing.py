@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 
-class ProductListig(BasePage):
+class ProductListing(BasePage):
 
     FIRST_PRODUCT = (By.CLASS_NAME, 'img-responsive image-square ')
     SORT_DROPDOWN = (By.CLASS_NAME, 'btn dropdown-toggle btn-default btn-sm-tight')
@@ -33,3 +33,27 @@ class ProductListig(BasePage):
         self.click_on(self.SORT_DROPDOWN)
         self.click_on(self.SORT_BY_CHEAPEST)
         return self
+
+"""
+    def chose_sort_option(self):
+        self.click_on(self.SORT_DROPDOWN)
+        
+        if chose == "Polecane":
+            self.click_on(self.SORT_BY_RANGED)
+        
+        elif chose == "Najpopularniejsze":
+            self.click_on(self.SORT_BY_POPULAR)
+        
+        elif chose == "Najnowsze":
+            self.click_on(self.SORT_BY_LATEST)
+        
+        elif choose == "Od najtańszych":
+            self.click_on(self.SORT_BY_CHEAPEST)
+        
+        else
+            print("Dokonaj wyboru")
+        
+        return self
+
+"""
+
