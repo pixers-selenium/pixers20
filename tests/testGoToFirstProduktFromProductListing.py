@@ -1,16 +1,12 @@
 from pages.HomePage import HomePage
-from pages.HomePage import ProductListing
 from tests.BaseTest import BaseTest
 
 
-class testExample(BaseTest):
+class testGoToFirstProduktFromProductListing(BaseTest):
 
-    def test_example(self):
+    def test_example_2(self):
         homepage = HomePage(self.driver)
         query = "kot"
 
         test = (homepage.search_query(query)
-                        .get_page_title())
-
-        self.assertIn(query, test)
-
+                        .go_to_first_product())
