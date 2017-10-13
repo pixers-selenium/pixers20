@@ -14,3 +14,25 @@ class testExample(BaseTest):
 
         self.assertIn(query, test)
 
+    def test_paypal_checkout(self):
+        homePage = HomePage(self.driver)
+        query = "kot"
+        text = 'test'
+        email = "qa@pixers.pl"
+        postal = "11-111"
+        payment_type = "paypal"
+
+        test = (homePage.search_query(query)
+                        .click_newsletter_close()
+                        .go_to_product()
+                        .buy_product()
+                        .go_to_order_place()
+                        .fill_address_form(text)
+                        .fill_email(email)
+                        .fill_postal(postal)
+                        .choose_payment(payment_type)
+                        .click_pay_button()
+                        .is_paypal_web_open())
+
+        self.assertTrue(test)
+
