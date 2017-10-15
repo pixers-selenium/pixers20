@@ -11,7 +11,7 @@ class BaseTest(unittest.TestCase):
     def setUp(self):
         self.driver = self.createDriver()
         self.driver.maximize_window()
-        self.driver.get("http://pixers.pl")
+        self.driver.get("http://pixers.pl?utm_source=selenium&_ff[product_page]=B")
 
         if self.ENV == 'spluczka':
             self.driver.add_cookie({'name': 'broken', 'value': 'spluczka'})
