@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
-    TIMEOUT = 10
+    TIMEOUT = 30
 
     LOGO = (By.CLASS_NAME, 'logo')
     NEWSLETTER_CLOSE = (By.XPATH, '//*[@id="welcomeNewsletterPopup"]/*[@aria-label="close"]')
