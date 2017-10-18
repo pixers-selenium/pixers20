@@ -32,7 +32,7 @@ class testExample(BaseTest):
                         .fill_postal(postal)
                         .choose_payment(payment_type)
                         .click_pay_button()
-                        .is_paypal_web_open())
+                        .is_url_contains(payment_type))
 
         self.assertTrue(test)
 
