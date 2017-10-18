@@ -52,10 +52,7 @@ class OrderPlace(BasePage):
         self.click_on(self.PAY_BUTTON)
         return self
 
+    # zamiast tego mozna uzyc metody is_url_contains() z BasePage
     def is_paypal_web_open(self):
-        url = 'paypal'
-        self.wait_for_url_contains(url)
-        if url in str(url):
-            return True
-        else:
-            return False
+        expected_url = 'paypal'
+        return self.wait_for_url_contains(expected_url)
