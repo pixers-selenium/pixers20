@@ -12,17 +12,17 @@ class OrderPlace(BasePage):
     POSTAL_CODE_BOX = (By.ID, 'zip')
     CITY_BOX = (By.ID, 'city')
     PHONE_BOX = (By.ID, 'phone')
-    DOTPAY_CHECKOUT_RADIO_BUTTON = (By.CSS_SELECTOR, 'body > section > form > div > article > div:nth-child(2) > div > div > div > div:nth-child(1) > div > div.col-md-2.col-sm-2.col-xs-12.payment-title > label')
-    CARD_RADIO_BUTTON = (By.CSS_SELECTOR, 'body > section > form > div > article > div:nth-child(2) > div > div > div > div:nth-child(2) > div > div.col-md-2.col-sm-2.col-xs-12.payment-title > label')
-    PAYPAL_RADIO_BUTTON = (By.CSS_SELECTOR, 'body > section > form > div > article > div:nth-child(2) > div > div > div > div:nth-child(3) > div > div.col-md-2.col-sm-2.col-xs-12.payment-title > label')
-    DOTPAY_CHECKOUT_OFFLINE_RADIO_BUTTON = (By.CSS_SELECTOR, 'body > section > form > div > article > div:nth-child(2) > div > div > div > div:nth-child(4) > div > div.col-md-2.col-sm-2.col-xs-12.payment-title > label')
-    PAY_BUTTON = (By.CLASS_NAME, 'btn btn-block btn-buying btn-lg text-uppercase')
+    PAYMENT_DOTPAY = (By.CSS_SELECTOR, 'label[for="optionsRadiosDotpay_checkout"]')
+    PAYMENT_OFFLINE = (By.CSS_SELECTOR, 'label[for="optionsRadiosDotpay_checkout_offline"]')
+    PAYMENT_PAYPAL = (By.CSS_SELECTOR, 'label[for="optionsRadiosPaypal_express"]')
+    PAYMENT_PAYPAL_CARD = (By.CSS_SELECTOR, 'label[for="optionsRadiosPaypal_card"]')
+    PAY_BUTTON = (By.CSS_SELECTOR, 'button[aria-label="pay-securely"]')
 
-    def find_and_insert_email(self, text):
+    def fill_email(self, text):
         self.insert_text(self.EMAIL_BOX, text)
         return self
 
-    def find_and_insert(self, text):
+    def fill_address_form(self, text):
         self.insert_text(self.NAME_BOX, text)
         self.insert_text(self.COMPANY_NAME_BOX, text)
         self.insert_text(self.ADDRESS1_BOX, text)
@@ -31,20 +31,23 @@ class OrderPlace(BasePage):
         self.insert_text(self.PHONE_BOX, text)
         return self
 
-    def find_and_insert_postal(self, text):
+    def fill_postal(self, text):
         self.insert_text(self.POSTAL_CODE_BOX, text)
         return self
 
-    def choose_payment(self):
-        if self.click_on(self.DOTPAY_CHECKOUT_RADIO_BUTTON):
-            print('dotpay')
-        elif self.click_on(self.CARD_RADIO_BUTTON):
-            print('card')
-        elif self.click_on(self.DOTPAY_CHECKOUT_OFFLINE_RADIO_BUTTON):
-            print('dotpay_offline')
+    def choose_payment(self, payment_type):
+        if payment_type == "dotpay":
+            self.click_on(self.PAYMENT_DOTPAY)
+        elif payment_type == "card":
+            self.click_on(self.PAYMENT_PAYPAL_CARD)
+        elif payment_type == "offline":
+            self.click_on(self.PAYMENT_OFFLINE)
+        elif payment_type == "paypal":
+            self.click_on(self.PAYMENT_PAYPAL)
+        else:
+            print("Choose payment type.")
         return self
 
-    def click_pay(self):
+    def click_pay_button(self):
         self.click_on(self.PAY_BUTTON)
         return self
-

@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
-    TIMEOUT = 10
+    TIMEOUT = 30
 
     LOGO = (By.CLASS_NAME, 'logo')
     NEWSLETTER_CLOSE = (By.XPATH, '//*[@id="welcomeNewsletterPopup"]/*[@aria-label="close"]')
@@ -15,30 +15,38 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def wait_for_element(self, locator, time = TIMEOUT):
+    def wait_for_element(self, locator, time=TIMEOUT):
         WebDriverWait(self.driver, time).until(EC.visibility_of_element_located(locator))
+
+    def wait_for_element_is_invisible(self, locator, time=TIMEOUT):
+        WebDriverWait(self.driver, time).until(EC.invisibility_of_element_located(locator))
+
+    def wait_for_url_contains(self, text, time=TIMEOUT):
+        WebDriverWait(self.driver, time).until(EC.url_contains(text))
 
     def find_element(self, locator):
         self.wait_for_element(locator)
         return self.driver.find_element(*locator)
 
     def click_on(self, locator):
-        '''
-        Funkcja click_on znajduje element na stronie wykorzustujac
-        funkcje find_element z tej klasy i klika na znaleziony element.
-        :param locator: zmienna okreslajaca locator na stronie
-        :return: teraz nic nie zwraca, a czy powinno cos zwracac zeby pozniej w ifie moznabylo to sprawdzic?
-        co zwraca element.click() gdybam ze true or false
-        '''
         element = self.find_element(locator)
         element.click()
-#
+        return self
 
     def insert_text(self, locator, text):
-        element = self.driver.find_element(*locator)
+        element = self.find_element(locator)
         element.clear()
         element.send_keys(text)
         return self
 
+    def is_url_contains(self, expected_url):
+        self.wait_for_url_contains(expected_url)
+        url = self.driver.current_url
+        if expected_url in str(url):
+            return True
+        else:
+            return False
+
     def get_page_title(self):
         return self.driver.title
+
