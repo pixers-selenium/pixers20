@@ -59,3 +59,19 @@ class OrderPlace(BasePage):
             return True
         else:
             return False
+
+    def is_dotpay_web_open(self):
+        url = 'dotpay'
+        self.wait_for_url_contains(url)
+        if url in str(url):
+            return True
+        else:
+            return False
+
+    def is_dotpay_offline_web_open(self):
+        url = 'dotpay'
+        self.wait_for_url_contains(url)
+        if url in str(url):
+            return True
+        else:
+            return False
