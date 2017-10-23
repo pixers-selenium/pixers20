@@ -13,6 +13,7 @@ class ProductPage(BasePage):
     SEPIA_EFFECT = (By.CSS_SELECTOR, '#configure-more > ul > li:nth-child(1) > div > div > ul > li:nth-child(3) > a')
     GRAYSCALLE_EFFECT = (By.CSS_SELECTOR, "#configure-more > ul > li:nth-child(1) > div > div > ul > li:nth-child(2) > a")
     NONE_EFFECT = (By.CSS_SELECTOR, "#configure-more > ul > li:nth-child(1) > div > div > ul > li:nth-child(1) > a")
+    MOUNTING_KIT = (By.CSS_SELECTOR, '#configure-more > ul > li:nth-child(3) > div > label > span')
 
     def buy_product(self):
         self.click_on(self.BUY_NOW_BUTTON)
@@ -45,5 +46,10 @@ class ProductPage(BasePage):
             print("Choose effect")
 
         return self
+
+    def click_mounting_kit_slider(self):
+        self.click_on(self.MOUNTING_KIT)
+        return self
+
 
 

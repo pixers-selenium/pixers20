@@ -1,12 +1,13 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 from pages.ProductPage import ProductPage
-from pages.HomePage import HomePage
+#from pages.HomePage import HomePage
 
 
 class ProductListing(BasePage):
 
     FIRST_PRODUCT = (By.CSS_SELECTOR, 'body > main > section > section > div:nth-child(1) > article')
+    SECOND_PRODUCT = (By.CSS_SELECTOR, 'body > main > section > section > div:nth-child(2) > article')
     SORT_DROPDOWN = (By.XPATH, '//div[@aria-label="sort-products"]')
     SORT_BY_RANGED = (By.XPATH, '//*[@id="configure-more-popup"]/div/div/div[2]/div/div/ul/li[1]/a')
     SORT_BY_POPULAR = (By.XPATH, '//*[@id="configure-more-popup"]/div/div/div[2]/div/div/ul/li[2]/a')

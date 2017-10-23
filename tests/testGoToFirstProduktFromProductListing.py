@@ -60,4 +60,16 @@ class testGoToFirstProduktFromProductListing(BaseTest):
 
         self.assertTrue(test)
 
+    def add_mounting_kit_to_acrylic_print(self):
+        homePage = HomePage(self.driver)
+        query = "pies"
+        expected_url = "mounting_kit%5D=1"
 
+        test = (homePage.search_query(query)
+                        .click_newsletter_close()
+                        .go_to_product(2)
+                        .open_more_options()
+                        .click_mounting_kit_slider()
+                        .is_url_contains(expected_url))
+
+        self.assertTrue(test)
