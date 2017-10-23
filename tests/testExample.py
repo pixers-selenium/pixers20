@@ -14,6 +14,28 @@ class testExample(BaseTest):
 
         self.assertIn(query, test)
 
+    def test_dotpay_checkout(self):
+        homePage = HomePage(self.driver)
+        query = "kot"
+        text = 'test'
+        email = "qa@pixers.pl"
+        postal = "11-111"
+        payment_type = "dotpay"
+
+        test = (homePage.search_query(query)
+                        .click_newsletter_close()
+                        .go_to_product()
+                        .buy_product()
+                        .go_to_order_place()
+                        .fill_address_form(text)
+                        .fill_email(email)
+                        .fill_postal(postal)
+                        .choose_payment(payment_type)
+                        .click_pay_button()
+                        .is_url_contains(payment_type))
+
+        self.assertTrue(test)
+
     def test_paypal_checkout(self):
         homePage = HomePage(self.driver)
         query = "kot"
@@ -32,56 +54,9 @@ class testExample(BaseTest):
                         .fill_postal(postal)
                         .choose_payment(payment_type)
                         .click_pay_button()
-                        .is_paypal_web_open())
+                        .is_url_contains(payment_type))
 
         self.assertTrue(test)
-
-    # def test_paypal_card_checkout(self): - tej funkcji nie robię bo póki co ta forma płatności jest wyłączona.
-
-    def test_dotpay_checkout(self):
-        homePage = HomePage(self.driver)
-        query = "kot"
-        text = 'test'
-        email = "qa@pixers.pl"
-        postal = "11-111"
-        payment_type = "dotpay"
-
-        test = (homePage.search_query(query)
-                        .click_newsletter_close()
-                        .go_to_product()
-                        .go_to_order_place()
-                        .fill_address_form(text)
-                        .fill_email(email)
-                        .fill_postal(postal)
-                        .choose_payment(payment_type)
-                        .click_pay_button()
-                        .is_dotpay_web_open())
-
-        self.assertTrue(test)
-
-    def test_dotpay_offline_checkout(self):
-        homePage = HomePage(self.driver)
-        query = "kot"
-        text = 'test'
-        email = "qa@pixers.pl"
-        postal = "11-111"
-        payment_type = "offline"
-
-        test = (homePage.search_query(query)
-                        .click_newsletter_close()
-                        .go_to_product()
-                        .go_to_order_place()
-                        .fill_address_form(text)
-                        .fill_email(email)
-                        .fill_postal(postal)
-                        .choose_payment(payment_type)
-                        .click_pay_button()
-                        .is_dotpay_offline_web_open())
-
-        self.assertTrue(test)
-
-
-
 
 
 

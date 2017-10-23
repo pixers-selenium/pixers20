@@ -51,27 +51,3 @@ class OrderPlace(BasePage):
     def click_pay_button(self):
         self.click_on(self.PAY_BUTTON)
         return self
-
-    def is_paypal_web_open(self):
-        url = 'paypal'
-        self.wait_for_url_contains(url)
-        if url in str(url):
-            return True
-        else:
-            return False
-
-    def is_dotpay_web_open(self):
-        url = 'dotpay'
-        self.wait_for_url_contains(url)
-        if url in str(url):
-            return True
-        else:
-            return False
-
-    def is_dotpay_offline_web_open(self):
-        url = 'dotpay'
-        self.wait_for_url_contains(url)
-        if url in str(url):
-            return True
-        else:
-            return False
