@@ -73,3 +73,25 @@ class testGoToFirstProduktFromProductListing(BaseTest):
                         .is_url_contains(expected_url))
 
         self.assertTrue(test)
+
+    def show_more_products(self):
+        homePage = HomePage(self.driver)
+        query = "pies"
+        expected_url = 'p2?q='+query
+        test = (homePage.search_query(query)
+                        .click_newsletter_close()
+                        .click_show_more_button()
+                        .is_url_contains(expected_url))
+
+        self.assertTrue(test)
+
+    def change_country(self):
+        homePage = HomePage(self.driver)
+        expected_url = 'pixers.us'
+        test = (homePage.change_country_to_usa()
+                        .is_url_contains(expected_url))
+
+        self.assertTrue(test)
+
+
+

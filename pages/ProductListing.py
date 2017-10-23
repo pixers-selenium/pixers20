@@ -17,6 +17,7 @@ class ProductListing(BasePage):
     PAGINATION_BUTTON_3 = (By.CSS_SELECTOR, 'body > main > footer > div:nth-child(1) > nav > ul > li:nth-child(5) > a')
     PAGINATION_BUTTON_5 = (By.CSS_SELECTOR, 'body > main > footer > div:nth-child(1) > nav > ul > li:nth-child(7) > a')
     PAGINATION_BUTTON_7 = (By.CSS_SELECTOR, 'body > main > footer > div:nth-child(1) > nav > ul > li:nth-child(9) > a')
+    SHOW_MORE_BUTTON = (By.CSS_SELECTOR, 'body > main > footer > div:nth-child(1) > div > a > span:nth-child(1)')
 
     def go_to_first_product(self):
         self.click_on(self.FIRST_PRODUCT)
@@ -79,4 +80,8 @@ class ProductListing(BasePage):
         expected_url_pagination_side_3 = 'p3'
         self.click_on(self.PAGINATION_BUTTON_3)
         HomePage.is_url_contains(expected_url_pagination_side_3)
+
+    def click_show_more_button(self):
+        self.click_on(self.SHOW_MORE_BUTTON)
+        return self
 
