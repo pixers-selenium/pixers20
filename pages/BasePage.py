@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
-    TIMEOUT = 30
+    TIMEOUT = 10
 
     LOGO = (By.CLASS_NAME, 'logo')
     NEWSLETTER_CLOSE = (By.XPATH, '//*[@id="welcomeNewsletterPopup"]/*[@aria-label="close"]')
@@ -28,6 +28,10 @@ class BasePage:
         self.wait_for_element(locator)
         return self.driver.find_element(*locator)
 
+    def find_elements(self, locator):
+        self.wait_for_element(locator)
+        return self.driver.find_elements(*locator)
+
     def click_on(self, locator):
         element = self.find_element(locator)
         element.click()
@@ -45,6 +49,13 @@ class BasePage:
         if expected_url in str(url):
             return True
         else:
+            return False
+
+    def is_element_visible(self, locator):
+        try:
+            self.driver.find_element(*locator)
+            return True
+        except Exception:
             return False
 
     def get_page_title(self):

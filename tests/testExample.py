@@ -71,3 +71,32 @@ class testExample(BaseTest):
                 .is_url_contains(expected)
                 )
         self.assertTrue(test)
+
+    def test_show_more_items(self):
+         homePage = HomePage(self.driver)
+         query = "kot"
+
+         test = (homePage.search_query(query)
+                 .click_newsletter_close()
+                 .click_show_more_items()
+                 .get_product_quantity())
+
+         self.assertEqual(74, test)
+
+    def test_send_message(self):
+        homePage = HomePage(self.driver)
+        query = "kot"
+        name = "test"
+        email = "qa@pixers.pl"
+        message = 'test, test'
+        test = (homePage.search_query(query)
+                            .click_newsletter_close()
+                            .click_ask_question()
+                            .fill_name(name)
+                            .fill_data_email(email)
+                            .fill_your_message(message)
+                            .click_on_send_message()
+                            .is_ask_form_send())
+
+        self.assertTrue(test)
+
